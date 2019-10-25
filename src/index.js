@@ -1,10 +1,13 @@
+import { create } from "domain";
+
 // write your createStore function here
 
-function createStore(){
+function createStore(reducer){
   let state;
 
   function dispatch(action){
-    state = candyReducer(state, action)
+    state = reducer(state, action)
+    // render() <--- Test fails when this line is uncommented??
   }
 
   function getState(){
@@ -34,4 +37,6 @@ function render() {
 };
 
 // use your createStore function and the functions provided here to create a store
+let store = createStore()
 // once the store is created, call an initial dispatch
+store.dispatch({type: '@@INIT'})
